@@ -13,13 +13,14 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
     }
   }, [key, initialValue]);
 
-  const changeItem = (value: T) => {
-    setValue(value);
-  };
-
   const setItem = (value: T) => {
+    setValue(value);
     window.localStorage.setItem(key, JSON.stringify(value));
   };
 
-  return { value, changeItem, setItem };
+  const removeItem = () => {
+    window.localStorage.removeItem(key);
+  };
+
+  return { value, setItem, removeItem };
 };

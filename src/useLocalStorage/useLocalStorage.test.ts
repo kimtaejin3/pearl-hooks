@@ -10,7 +10,7 @@ describe("useLocalStorage", () => {
   it("should update the value when changeItem is called", () => {
     const { result } = renderHook(() => useLocalStorage("my-key", "my-value"));
     act(() => {
-      result.current.changeItem("new-value");
+      result.current.setItem("new-value");
     });
     expect(result.current.value).toBe("new-value");
   });

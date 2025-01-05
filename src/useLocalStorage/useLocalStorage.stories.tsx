@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StoryFn, Meta } from "@storybook/react";
 import { useLocalStorage } from "./useLocalStorage";
 
@@ -10,10 +10,8 @@ export default {
 } as Meta;
 
 export const Default: StoryFn = () => {
-  const { value, changeItem, setItem } = useLocalStorage<string>(
-    "my-key",
-    "my-value"
-  );
+  const [key, setKey] = useState("my-key");
+  const { value, setItem } = useLocalStorage<string>(key, "my-value");
 
   return (
     <div>
@@ -22,9 +20,10 @@ export const Default: StoryFn = () => {
         type="text"
         placeholder="value"
         value={value}
-        onChange={(e) => changeItem(e.target.value)}
+        onChange={(e) => setItem(e.target.value)}
       />
       <button onClick={() => setItem(value)}>Change Item</button>
+      <button onClick={() => setKey("new-key")}>Change Key</button>
     </div>
   );
 };

@@ -5,6 +5,14 @@ import * as LocalStorage from "./useLocalStorage.stories";
 
 # useLocalStorage
 
-이 커스텀훅은 로컬스토리지의 값과 리액트의 상태를 동기화해줍니다.
+이 커스텀훅은 로컬스토리지를 통해 데이터를 저장하고 불러올 수 있도록 도와줍니다.
+
+### 훅 사용해보기
 
 <Canvas of={LocalStorage.Default} />
+
+### 사용법
+
+```tsx
+const { value, setItem, removeItem } = useLocalStorage("my-key", "my-value");
+```
