@@ -10,20 +10,22 @@ export default {
 } as Meta;
 
 export const Default: StoryFn = () => {
-  const [key, setKey] = useState("my-key");
-  const { value, setItem } = useLocalStorage<string>(key, "my-value");
+  const { value, setItem, removeItem } = useLocalStorage<string | null>(
+    "my-key",
+    null
+  );
 
   return (
     <div>
-      <p>Value: {value}</p>
+      <span>값을 입력하여 저장해보세요: </span>
       <input
         type="text"
-        placeholder="value"
-        value={value}
+        value={value ?? ""}
         onChange={(e) => setItem(e.target.value)}
       />
-      <button onClick={() => setItem(value)}>Change Item</button>
-      <button onClick={() => setKey("new-key")}>Change Key</button>
+      <p>저장된 값을 확인하세요: {value}</p>
+      <br />
+      <button onClick={removeItem}>remove Item</button>
     </div>
   );
 };

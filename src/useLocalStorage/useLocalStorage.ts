@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 
 export const useLocalStorage = <T>(key: string, initialValue: T) => {
-  const [value, setValue] = useState<T>(initialValue);
+  const [value, setValue] = useState<T | null>(initialValue);
 
   useEffect(() => {
     const item = window.localStorage.getItem(key);
@@ -19,6 +19,7 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
   };
 
   const removeItem = () => {
+    setValue(null);
     window.localStorage.removeItem(key);
   };
 
