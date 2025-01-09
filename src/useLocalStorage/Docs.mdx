@@ -5,7 +5,25 @@ import * as LocalStorage from "./useLocalStorage.stories";
 
 # useLocalStorage
 
-이 커스텀훅은 로컬스토리지를 통해 데이터를 저장하고 불러올 수 있도록 도와줍니다.
+이 커스텀훅은 로컬스토리지에 값을 저장하고, 변경하고, 삭제하는 기능을 제공합니다.
+
+## 특징
+
+- 브라우저의 localStorage API를 간편하게 사용할 수 있습니다
+- 값의 자동 직렬화/역직렬화를 지원합니다 (객체, 배열 등도 저장 가능)
+- 컴포넌트 간 상태 공유가 가능합니다
+- 페이지 새로고침 후에도 데이터가 유지됩니다
+
+## 파라미터
+
+- `key`: localStorage에 저장될 키 값 (string)
+- `initialValue`: 초기값 (any)
+
+## 반환값
+
+- `value`: 현재 저장된 값
+- `setItem`: 값을 업데이트하는 함수
+- `removeItem`: 저장된 값을 삭제하는 함수
 
 ### 훅 사용해보기
 
@@ -14,5 +32,22 @@ import * as LocalStorage from "./useLocalStorage.stories";
 ### 사용법
 
 ```tsx
-const { value, setItem, removeItem } = useLocalStorage("my-key", "my-value");
+export default function App() {
+  const { value, setItem, removeItem } = useLocalStorage("my-key", "my-value");
+
+  return (
+    <div>
+      <p>Value: {value}</p>
+      <div>
+        <input
+          type="text"
+          placeholder="value"
+          value={value}
+          onChange={(e) => setItem(e.target.value)}
+        />
+        <button onClick={() => removeItem()}>Remove Item</button>
+      </div>
+    </div>
+  );
+}
 ```
