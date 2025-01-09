@@ -8,7 +8,7 @@
     "test:watch": "jest --watch",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "chromatic --project-token=your-project-token",
+    "chromatic": "chromatic --project-token=chpt_1d967e723ae45ec",
     "deploy-storybook": "storybook-to-ghpages"
   },
   "main": "dist/index.js",

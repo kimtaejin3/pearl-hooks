@@ -17,6 +17,8 @@ export const Default: StoryFn = () => {
 
   return (
     <div>
+      <h1>useLocalStorage</h1>
+      <br />
       <span>값을 입력하여 저장해보세요: </span>
       <input
         type="text"
