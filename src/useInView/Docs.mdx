@@ -1,0 +1,45 @@
+import { Canvas, Meta, Description } from "@storybook/blocks";
+import * as InView from "./useInView.stories";
+
+<Meta of={InView} />
+
+# useInView
+
+요소가 뷰포트 내에 있는지 감지하는 훅입니다.
+
+## 사용법
+
+```tsx
+import { useInView } from "@hooks/use-in-view";
+function Example() {
+  const { ref, inView } = useInView();
+  return (
+    <div ref={ref}>{inView ? "화면에 보입니다!" : "화면 밖에 있습니다."}</div>
+  );
+}
+```
+
+## 매개변수
+
+- `options`: (선택) IntersectionObserver 설정 객체
+  - `threshold`: 요소가 얼마나 보여야 감지할지 설정 (0~1)
+  - `root`: 감지할 뷰포트 요소 (기본값: 브라우저 뷰포트)
+  - `rootMargin`: 루트 요소의 마진 설정 (CSS 마진 형식)
+
+## 반환값
+
+- `ref`: 관찰할 요소에 연결할 ref
+- `inView`: 요소가 뷰포트 내에 있는지 여부
+
+## 커스텀 threshold 설정
+
+```tsx
+function ThresholdExample() {
+  const { ref, inView } = useInView({ threshold: 0.5 });
+  return (
+    <div ref={ref}>
+      {inView ? "50% 이상 보입니다!" : "50% 미만으로 보이거나 안 보입니다!"}
+    </div>
+  );
+}
+```
